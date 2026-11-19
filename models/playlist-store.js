@@ -23,6 +23,16 @@ const playlistStore = {
       logger.error("Error fetching playlist", e);
     }
   },
+
+  async removePlaylist(playlistId) {
+    const query = 'DELETE FROM playlist2_playlists WHERE id=$1';
+    const values = [playlistId];
+    try {
+      await dataStoreClient.query(query, values);
+    } catch (e) {
+      logger.error("Unable to remove playlist:", e);
+    };
+  },
 };
 
 
